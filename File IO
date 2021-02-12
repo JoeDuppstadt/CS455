@@ -1,0 +1,31 @@
+// waiting on the completion of tag tree
+public boolean save(Stack eventStack, ArrayList contacts){
+        File fin = new File("save.dat");
+        try{
+            ObjectOutputStream fout = new ObjectOutputStream(new FileOutputStream(fin));
+            fout.writeObject(eventStack);
+            fout.writeObject(contacts);
+            fout.close();
+            System.out.println("Save Successful");
+          
+        }catch(IOException e) {
+            System.out.println("File not found");
+            return false;
+        }
+        return false;
+    }
+    
+    public boolean Load(String fileName, Stack eventStack, ArrayList contacts) throws ClassNotFoundException{
+        File fout = new File(fileName);
+        
+        try{
+            ObjectInputStream reader = new ObjectInputStream(new FileInputStream(fout));
+            eventStack = (Stack) reader.readObject();
+            contacts = (ArrayList)reader.readObject();
+        }
+        catch(IOException e){
+            System.out.println("Can not cpmplete task");
+            return false;
+        }
+        return false;        
+    }
